@@ -9,6 +9,13 @@ object PointListRepositoryImpl: PointListRepository {
 
     private var autoIncrementId = 0
 
+    init{
+        for (i in 0 until 10){
+            val item = PointItem("Point $i", 1,2,3,4)
+            addPointItem(item)
+        }
+    }
+
     override fun addPointItem(pointItem: PointItem) {
         if (pointItem.idPoint == PointItem.UNDEFINED_ID){
             pointItem.idPoint = autoIncrementId++
