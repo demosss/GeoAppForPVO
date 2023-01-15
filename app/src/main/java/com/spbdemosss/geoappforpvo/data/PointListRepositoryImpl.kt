@@ -1,9 +1,13 @@
 package com.spbdemosss.geoappforpvo.data
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.spbdemosss.geoappforpvo.domain.points.PointItem
 import com.spbdemosss.geoappforpvo.domain.points.PointListRepository
 
 object PointListRepositoryImpl: PointListRepository {
+
+    private val pointListLD = MutableLiveData<List<PointItem>>()
 
     private val pointList = mutableListOf<PointItem>()
 
@@ -39,7 +43,11 @@ object PointListRepositoryImpl: PointListRepository {
         } ?: throw RuntimeException("Element with id $pointItemId not found")
     }
 
-    override fun getPointList(): List<PointItem> {
-        return pointList.toList()
+    override fun getPointList(): LiveData<List<PointItem>> {
+        return pointListLD
+    }
+
+    private fun updateList(){
+        pointListLD.value = pointList.toList()
     }
 }

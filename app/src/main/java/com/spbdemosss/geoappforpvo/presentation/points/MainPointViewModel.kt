@@ -15,15 +15,10 @@ class MainPointViewModel: ViewModel() {
     private val deletePointItemUseCase = DeletePointItemUseCase(repository)
     private val editPointItemUseCase = EditPointItemUseCase(repository)
 
-    val pointList = MutableLiveData<List<PointItem>>()
+    val pointList = getPointListUseCase.getPointList()
 
-    fun getPointList(){
-        val list = getPointListUseCase.getPointList()
-        pointList.value = list
-    }
 
     fun deletePointItem(pointItem: PointItem){
         deletePointItemUseCase.deletePointItem(pointItem)
-        getPointList()
     }
 }
