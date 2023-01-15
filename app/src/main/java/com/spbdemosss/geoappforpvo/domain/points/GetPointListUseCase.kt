@@ -1,7 +1,7 @@
 package com.spbdemosss.geoappforpvo.domain.points
 
-class GetPointListUseCase {
+class GetPointListUseCase(private val pointListRepository: PointListRepository) {
     fun getPointList(): List<PointItem>{
-        TODO()
+        return pointListRepository.getPointList()
     }
 }
