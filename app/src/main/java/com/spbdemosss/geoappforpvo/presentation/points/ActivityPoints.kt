@@ -15,6 +15,5 @@ class ActivityPoints : AppCompatActivity() {
         viewModel.pointList.observe(this){
             Log.d("MainAct", it.toString())
         }
-        viewModel.getPointList()
     }
 }
